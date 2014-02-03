@@ -16,14 +16,14 @@
 
 #define MAX_CHUNK_SIZE 16
 
-int layer2_write(char *chunk, int len)
-{
-#warning layer2_write: Split message into bytes.
-	return NetworkTransmissionFailure;
-}
-
 int layer2_read(char *chunk, int max)
 {
 #warning layer2_read: Split message into bytes.
+	return NetworkTransmissionFailure;
+}
+
+int layer2_write(char *chunk, int len)
+{
+#warning layer2_write: Split message into bytes.
 	return NetworkTransmissionFailure;
 }

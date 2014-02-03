@@ -17,14 +17,14 @@
  You can assume that layer 1 maintains the order of individual bytes.
  */
 
-/// Write a byte.
-/// @param b The byte to write.
-/// @return The number of bytes written. Note: Returns -1 on error.
-int layer1_write(char b);
-
 /// Reads a byte.
 /// @param b The byte to read.
-/// @return The number of bytes read. Note: Returns -1 on error.
+/// @return The number of bytes read. Note: Returns @c NetworkTransmissionFailure on error.
 int layer1_read(char *b);
+
+/// Write a byte.
+/// @param b The byte to write.
+/// @return The number of bytes written. Note: Returns @c NetworkTransmissionFailure on error.
+int layer1_write(char b);
 
 #endif

@@ -17,16 +17,16 @@
  More specifically, there is no length limitation at layer 3, so a sender can ask layer 3 to send any size message.
  */
 
-/// Sends a message of any length.
-/// @param msg The message to write.
-/// @param len The length of the message.
-/// @return The number of bytes of the message written. Error returns -1.
-int layer3_write(char *msg, int len);
-
 /// Read a message of any length.
 /// @param msg The message buffer to read into.
 /// @param max The maximum number of bytes to read.
 /// @return The number of bytes of the message read. Error returns -1.
 int layer3_read(char *msg, int max);
+
+/// Sends a message of any length.
+/// @param msg The message to write.
+/// @param len The length of the message.
+/// @return The number of bytes of the message written. Error returns -1.
+int layer3_write(char *msg, int len);
 
 #endif

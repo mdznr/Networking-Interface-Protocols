@@ -23,14 +23,14 @@
  You must (in layer5_read()) dynamically allocate memory of the appropriate size for the firstname and lastname fields. Further, it is the responsibility of the caller to free this memory. The return value is 1 on success, or -1 on error.
  */
 
-/// Sends a student structure.
-/// @param stu The student structure to send.
-/// @return The success status of the message send. On success, returns 1. On error, returns -1.
-int layer5_write(student *stu);
-
 /// Read a student structure.
 /// @param stu The student structure to read into.
 /// @return The success status of the message read. On success, returns 1. On error, returns -1.
 int layer5_read(student *stu);
+
+/// Sends a student structure.
+/// @param stu The student structure to send.
+/// @return The success status of the message send. On success, returns 1. On error, returns -1.
+int layer5_write(student *stu);
 
 #endif

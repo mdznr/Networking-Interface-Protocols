@@ -20,16 +20,16 @@
  Note that it is also valid to send/receive a chunk of size 0.
  */
 
-/// Sends a chunk consisting of the sequence of bytes starting at the address specified of a given length.
-/// @param chunk The address of the first byte in a sequence of bytes to write.
-/// @param len The length of the chunk.
-/// @return The length of the chunk written (in bytes). Error returns -1.
-int layer2_write(char *chunk, int len);
-
 /// Reads a chunk and stores the incoming bytes in a buffer.
 /// @param chunk The chunk to read into.
 /// @param max The maximum length to read into the chunk.
 /// @return The length of the chunk read (in bytes). Error returns -1.
 int layer2_read(char *chunk, int max);
+
+/// Sends a chunk consisting of the sequence of bytes starting at the address specified of a given length.
+/// @param chunk The address of the first byte in a sequence of bytes to write.
+/// @param len The length of the chunk.
+/// @return The length of the chunk written (in bytes). Error returns -1.
+int layer2_write(char *chunk, int len);
 
 #endif

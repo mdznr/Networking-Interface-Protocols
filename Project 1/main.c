@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "NetworkingLayer5.h"
 
@@ -44,8 +45,9 @@ void main_writer(const char * argv[])
 	student x;
 	
 	// The first command-line argument is the firstname, the second is the lastname.
-	x.firstname = argv[1];
-	x.lastname = argv[2];
+#warning will strdup cause memory leaks? using argv[x] directly causes warnings
+	x.firstname = strdup(argv[1]);
+	x.lastname = strdup(argv[2]);
 	
 	// argv[3] is the id.
 	x.rin = atoi(argv[3]);
@@ -59,6 +61,11 @@ void main_writer(const char * argv[])
 		fprintf(stderr, "Error sending record\n");
 		exit(1);
 	}
+	
+	// Free x
+#warning is this necessary?
+	free(x.firstname);
+	free(x.lastname);
 }
 
 /// Test raeding functionality.
@@ -83,8 +90,16 @@ void main_reader()
 // Layer 1
 void layer1Test()
 {
+	printf("\nLayer 1 Test Started\n");
+	
 	char b = 'b';
-	printf("%d", layer1_write(b));
+	printf("\nlayer1_write: %d\n", layer1_write(b));
+	
+	char a;
+	printf("layer1_read: %d\n", layer1_read(&a));
+	printf("char: %c", a);
+	
+	printf("\nLayer 1 Test Ended\n");
 }
 
 // Layer 2
@@ -121,9 +136,9 @@ void layer5Test()
  depending on how many command-line arguments are supplied
  when the program is run.
  */
+#include <unistd.h> // read, write
 int main(int argc, const char * argv[])
-{
-	
+{	
 #ifdef TEST_LAYERS
 	// Test the different layers
 	layer1Test();
@@ -131,6 +146,7 @@ int main(int argc, const char * argv[])
 	layer3Test();
 	layer4Test();
 	layer5Test();
+	return 1;
 #endif
 	
 	/*

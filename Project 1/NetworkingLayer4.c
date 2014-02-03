@@ -28,14 +28,14 @@
  Note that you do not need to consider the possibility of dropped (or duplicated) bits or bytes; only worry about some of the bits being scrambled during transmission.
 */
 
-int layer4_write(char *msg, int len)
-{
-#warning layer4_write
-	return NetworkTransmissionFailure;
-}
-
 int layer4_read(char *msg, int max)
 {
 #warning layer4_read
+	return NetworkTransmissionFailure;
+}
+
+int layer4_write(char *msg, int len)
+{
+#warning layer4_write
 	return NetworkTransmissionFailure;
 }

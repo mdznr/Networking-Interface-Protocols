@@ -14,14 +14,14 @@
 
 #include "NetworkingLayer4.h"
 
-int layer5_write(student *stu)
-{
-#warning layer5_write
-	return NetworkTransmissionFailure;
-}
-
 int layer5_read(student *stu)
 {
 #warning layer5_read
+	return NetworkTransmissionFailure;
+}
+
+int layer5_write(student *stu)
+{
+#warning layer5_write
 	return NetworkTransmissionFailure;
 }
