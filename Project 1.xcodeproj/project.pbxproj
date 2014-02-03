@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		C9D4B981189AA6D7001C4F4F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B980189AA6D7001C4F4F /* main.c */; };
 		C9D4B983189AA6D7001C4F4F /* Project_1.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9D4B982189AA6D7001C4F4F /* Project_1.1 */; };
+		C9D4B98A189AA76C001C4F4F /* NetworkingLayer1.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B989189AA76C001C4F4F /* NetworkingLayer1.c */; };
+		C9D4B98E189AA9D2001C4F4F /* NetworkingLayer2.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B98D189AA9D2001C4F4F /* NetworkingLayer2.c */; };
+		C9D4B991189AAF4B001C4F4F /* NetworkingLayer3.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B990189AAF4B001C4F4F /* NetworkingLayer3.c */; };
+		C9D4B994189AB73E001C4F4F /* NetworkingLayer4.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B993189AB73E001C4F4F /* NetworkingLayer4.c */; };
+		C9D4B997189AB753001C4F4F /* NetworkingLayer5.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B996189AB752001C4F4F /* NetworkingLayer5.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +33,18 @@
 		C9D4B97D189AA6D7001C4F4F /* Project 1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Project 1"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D4B980189AA6D7001C4F4F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		C9D4B982189AA6D7001C4F4F /* Project_1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Project_1.1; sourceTree = "<group>"; };
+		C9D4B989189AA76C001C4F4F /* NetworkingLayer1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer1.c; sourceTree = "<group>"; };
+		C9D4B98B189AA86E001C4F4F /* NetworkingLayer1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer1.h; sourceTree = "<group>"; };
+		C9D4B98C189AA9CC001C4F4F /* NetworkingLayer2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer2.h; sourceTree = "<group>"; };
+		C9D4B98D189AA9D2001C4F4F /* NetworkingLayer2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer2.c; sourceTree = "<group>"; };
+		C9D4B98F189AAE29001C4F4F /* NetworkingLayer3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer3.h; sourceTree = "<group>"; };
+		C9D4B990189AAF4B001C4F4F /* NetworkingLayer3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer3.c; sourceTree = "<group>"; };
+		C9D4B992189AB737001C4F4F /* NetworkingLayer4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer4.h; sourceTree = "<group>"; };
+		C9D4B993189AB73E001C4F4F /* NetworkingLayer4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer4.c; sourceTree = "<group>"; };
+		C9D4B995189AB74A001C4F4F /* NetworkingLayer5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer5.h; sourceTree = "<group>"; };
+		C9D4B996189AB752001C4F4F /* NetworkingLayer5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer5.c; sourceTree = "<group>"; };
+		C9D4B998189ABE18001C4F4F /* NetworkingReturnValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingReturnValues.h; sourceTree = "<group>"; };
+		C9D4B999189ABEB2001C4F4F /* Student.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +78,18 @@
 			isa = PBXGroup;
 			children = (
 				C9D4B980189AA6D7001C4F4F /* main.c */,
+				C9D4B999189ABEB2001C4F4F /* Student.h */,
+				C9D4B998189ABE18001C4F4F /* NetworkingReturnValues.h */,
+				C9D4B995189AB74A001C4F4F /* NetworkingLayer5.h */,
+				C9D4B996189AB752001C4F4F /* NetworkingLayer5.c */,
+				C9D4B992189AB737001C4F4F /* NetworkingLayer4.h */,
+				C9D4B993189AB73E001C4F4F /* NetworkingLayer4.c */,
+				C9D4B98F189AAE29001C4F4F /* NetworkingLayer3.h */,
+				C9D4B990189AAF4B001C4F4F /* NetworkingLayer3.c */,
+				C9D4B98C189AA9CC001C4F4F /* NetworkingLayer2.h */,
+				C9D4B98D189AA9D2001C4F4F /* NetworkingLayer2.c */,
+				C9D4B98B189AA86E001C4F4F /* NetworkingLayer1.h */,
+				C9D4B989189AA76C001C4F4F /* NetworkingLayer1.c */,
 				C9D4B982189AA6D7001C4F4F /* Project_1.1 */,
 			);
 			path = "Project 1";
@@ -118,6 +147,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9D4B981189AA6D7001C4F4F /* main.c in Sources */,
+				C9D4B997189AB753001C4F4F /* NetworkingLayer5.c in Sources */,
+				C9D4B98E189AA9D2001C4F4F /* NetworkingLayer2.c in Sources */,
+				C9D4B98A189AA76C001C4F4F /* NetworkingLayer1.c in Sources */,
+				C9D4B994189AB73E001C4F4F /* NetworkingLayer4.c in Sources */,
+				C9D4B991189AAF4B001C4F4F /* NetworkingLayer3.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +261,7 @@
 				C9D4B988189AA6D7001C4F4F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
