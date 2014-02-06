@@ -13,22 +13,16 @@
 #include <stdlib.h>	// exit
 #include <string.h>	// strlen, etc.
 
+static int byte = 1;
+
 // Sample layer1_read just calls read on stdin
 int layer1_read(char *b)
 {
-	if ( read(STDIN_FILENO, b, 1) != 1 ) {
-		return NetworkTransmissionFailure;
-	} else {
-		return NetworkTransmissionSuccess;
-	}
+	return read(STDIN_FILENO, b, byte) != byte ? NetworkTransmissionFailure : NetworkTransmissionSuccess;
 }
 
 // Sample layer1_write just calls write to stdout
 int layer1_write(char b)
 {
-	if ( write(STDOUT_FILENO, &b, 1) != 1 ) {
-		return NetworkTransmissionFailure;
-	} else {
-		return NetworkTransmissionSuccess;
-	}
+	return write(STDOUT_FILENO, &byte, byte) != byte ? NetworkTransmissionFailure : NetworkTransmissionSuccess;
 }
