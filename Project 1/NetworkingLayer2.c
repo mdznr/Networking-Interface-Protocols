@@ -14,16 +14,49 @@
 
 #include "NetworkingLayer1.h"
 
-#define MAX_CHUNK_SIZE 16
-
 int layer2_read(char *chunk, int max)
-{
-#warning layer2_read: Split message into bytes.
-	return NetworkTransmissionFailure;
+{	
+	// Keep track of number of bytes transmitted.
+	int i = 0;
+	
+	// Read bytes into chunk.
+	while ( i < max ) {
+#warning TODO: Check if can stop reading early.
+		if ( 0 ) {
+			break;
+		}
+		
+		// Read a byte. Check for failure.
+		int bytesTransmitted = layer1_read(&chunk[i]);
+		if ( bytesTransmitted == NetworkTransmissionFailure ) {
+			return NetworkTransmissionFailure;
+		}
+		
+		// Count transmitted bytes.
+		i += bytesTransmitted;
+	}
+	
+	// Return the number of bytes read.
+	return i;
 }
 
 int layer2_write(char *chunk, int len)
 {
-#warning layer2_write: Split message into bytes.
-	return NetworkTransmissionFailure;
+	// Keep track of number of bytes transmitted.
+	int i = 0;
+	
+	// Write all bytes in the chunk.
+	while ( i < len ) {
+		// Write a byte. Check for failure.
+		int bytesTransmitted = layer1_write(chunk[i]);
+		if ( bytesTransmitted == NetworkTransmissionFailure ) {
+			return NetworkTransmissionFailure;
+		}
+		
+		// Count transmitted bytes.
+		i += bytesTransmitted;
+	}
+	
+	// Return the number of bytes written.
+	return i;
 }
