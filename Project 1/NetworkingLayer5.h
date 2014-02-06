@@ -25,12 +25,12 @@
 
 /// Read a student structure.
 /// @param stu The student structure to read into.
-/// @return The success status of the message read. On success, returns 1. On error, returns -1.
+/// @return The success status of the message read. On success, returns @c NetworkTransmissionSuccess. On error, returns @c NetworkTransmissionFailure.
 int layer5_read(student *stu);
 
 /// Sends a student structure.
 /// @param stu The student structure to send.
-/// @return The success status of the message send. On success, returns 1. On error, returns -1.
+/// @return The success status of the message send. On success, returns @c NetworkTransmissionSuccess. On error, returns @c NetworkTransmissionFailure.
 int layer5_write(student *stu);
 
 #endif
