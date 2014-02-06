@@ -42,6 +42,7 @@ void main_writer(const char * argv[])
 		exit(1);
 	}
 	
+	// Create student.
 	student x;
 	
 	// The first command-line argument is the firstname, the second is the lastname.
@@ -62,7 +63,7 @@ void main_writer(const char * argv[])
 		exit(1);
 	}
 	
-	// Free x
+	// Free the student.
 #warning is this necessary?
 	free(x.firstname);
 	free(x.lastname);
@@ -71,6 +72,7 @@ void main_writer(const char * argv[])
 /// Test raeding functionality.
 void main_reader()
 {
+	// Create student.
 	student x;
 	
 	if ( layer5_read( &x ) == NetworkTransmissionFailure) {
@@ -97,7 +99,7 @@ void layer1Test()
 	
 	char a;
 	printf("layer1_read: %d\n", layer1_read(&a));
-	printf("char: %c", a);
+	printf("read: %c", a);
 	
 	printf("\nLayer 1 Test Ended\n");
 }
@@ -105,15 +107,35 @@ void layer1Test()
 // Layer 2
 void layer2Test()
 {
+	printf("\nLayer 2 Test Started\n");
+	
 	char *b = "abc";
-	printf("%d", layer2_write(b, 3));
+	int len = (int) strnlen(b, 256);
+	printf("\nlayer2_write: %d\n", layer2_write(b, len));
+	
+	char *a = malloc(sizeof(char) * (len+1));
+	a[len] = '\0';
+	printf("layer2_read: %d\n", layer2_read(a, len));
+	printf("read: %s", a);
+	
+	printf("\nLayer 2 Test Ended\n");
 }
 
 // Layer 3
 void layer3Test()
 {
-	char *b = "abc";
-	printf("%d", layer3_write(b, 3));
+	printf("\nLayer 3 Test Started\n");
+	
+	char *b = "abcdefghijklmnopqrstuvwxyz1234567";
+	int len = (int) strnlen(b, 256);
+	printf("\nlayer3_write: %d\n", layer3_write(b, len));
+	
+	char *a = malloc(sizeof(char) * (len+1));
+	a[len] = '\0';
+	printf("layer3_read: %d\n", layer3_read(a, len));
+	printf("read: %s", a);
+	
+	printf("\nLayer 3 Test Ended\n");
 }
 
 // Layer 4
@@ -138,11 +160,11 @@ void layer5Test()
  */
 #include <unistd.h> // read, write
 int main(int argc, const char * argv[])
-{	
+{
 #ifdef TEST_LAYERS
 	// Test the different layers
-	layer1Test();
-	layer2Test();
+//	layer1Test();
+//	layer2Test();
 	layer3Test();
 	layer4Test();
 	layer5Test();
