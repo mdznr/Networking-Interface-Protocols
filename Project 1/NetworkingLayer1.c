@@ -24,5 +24,5 @@ int layer1_read(char *b)
 // Sample layer1_write just calls write to stdout
 int layer1_write(char b)
 {
-	return write(STDOUT_FILENO, &byte, byte) != byte ? NetworkTransmissionFailure : NetworkTransmissionSuccess;
+	return write(STDOUT_FILENO, &b, byte) != byte ? NetworkTransmissionFailure : NetworkTransmissionSuccess;
 }
