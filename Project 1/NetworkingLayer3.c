@@ -13,15 +13,54 @@
 #include <string.h>	// strlen, etc.
 
 #include "NetworkingLayer2.h"
+#include "Algorithm.h"
 
 int layer3_read(char *msg, int max)
-{
-#warning layer3_read: Split up message
-	return NetworkTransmissionFailure;
+{	
+	// Keep track of number of bytes transmitted.
+	int i = 0;
+	
+	// Read bytes into msg.
+	while ( i < max ) {
+#warning TODO: Check if can stop reading early.
+		if ( 0 ) {
+			break;
+		}
+		
+		// Read a chunk. Check for failure.
+		int bytesTransmitted = layer2_read(&msg[i], max-i);
+		if ( bytesTransmitted == NetworkTransmissionFailure ) {
+			return NetworkTransmissionFailure;
+		}
+		
+		// Count transmitted bytes.
+		i += bytesTransmitted;
+	}
+	
+	// Return the number of bytes read.
+	return i;
 }
 
 int layer3_write(char *msg, int len)
 {
-#warning layer3_write: Split up message
-	return NetworkTransmissionFailure;
+	// Keep track of number of bytes transmitted.
+	int i = 0;
+	
+	// Write all bytes.
+	while ( i < len ) {
+		// Find size of chunk to send.
+		int numberOfBytesToTransmit = MAX(len-i, maxChunkSize);
+		
+		// Write a chunk. Check for failure.
+		int bytesTransmitted = layer2_write(&msg[i], numberOfBytesToTransmit);
+		if ( bytesTransmitted == NetworkTransmissionFailure ) {
+			return NetworkTransmissionFailure;
+		}
+		
+		// Count transmitted bytes.
+		i += bytesTransmitted;
+	}
+	
+	// Return the number of bytes written.
+	return i;
 }
