@@ -64,7 +64,6 @@ void main_writer(const char * argv[])
 	}
 	
 	// Free the student.
-#warning is this necessary?
 	free(x.firstname);
 	free(x.lastname);
 }
@@ -117,6 +116,7 @@ void layer2Test()
 	a[len] = '\0';
 	printf("layer2_read: %d\n", layer2_read(a, len));
 	printf("read: %s", a);
+	free(a);
 	
 	printf("\nLayer 2 Test Ended\n");
 }
@@ -134,6 +134,7 @@ void layer3Test()
 	a[len] = '\0';
 	printf("layer3_read: %d\n", layer3_read(a, len));
 	printf("read: %s", a);
+	free(a);
 	
 	printf("\nLayer 3 Test Ended\n");
 }
@@ -141,7 +142,20 @@ void layer3Test()
 // Layer 4
 void layer4Test()
 {
+	printf("\nLayer 4 Test Started\n");
 	
+	char *b = "abcdefghijklmnopqrstuvwxyz1234567";
+	int len = (int) strnlen(b, 256);
+	len = layer4_write(b, len);
+	printf("\nlayer4_write: %d\n", len);
+	
+	char *a = malloc(sizeof(char) * (len+1));
+	a[len] = '\0';
+	printf("layer4_read: %d\n", layer4_read(a, len));
+	printf("read: %s", a);
+	free(a);
+	
+	printf("\nLayer 4 Test Ended\n");
 }
 
 // Layer 5
@@ -165,7 +179,7 @@ int main(int argc, const char * argv[])
 	// Test the different layers
 //	layer1Test();
 //	layer2Test();
-	layer3Test();
+//	layer3Test();
 	layer4Test();
 	layer5Test();
 	return 1;
