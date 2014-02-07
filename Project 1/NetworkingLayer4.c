@@ -11,6 +11,9 @@
 #include <stdio.h>	// printf, fprintf, etc.
 #include <stdlib.h>	// exit()
 #include <string.h>	// strlen, etc.
+#include <limits.h> // SHRT_MAX
+
+#include "Boolean.h"
 
 #include "NetworkingLayer3.h"
 
@@ -28,14 +31,117 @@
  Note that you do not need to consider the possibility of dropped (or duplicated) bits or bytes; only worry about some of the bits being scrambled during transmission.
 */
 
+
+#pragma mark - Helper
+
+/// Sums the bytes of a byte stream.
+/// @param bytes The stream of bytes to sum.
+/// @param len The length of the stream.
+/// @return The total sum of all the bytes in the byte stream.
+int sumOfBytes(char *bytes, int len)
+{
+	// Running total.
+	int sum = 0;
+	
+	// Loop to sum all bytes.
+	for ( int i=0; i<len; ++i ) {
+		sum += (char) bytes[i];
+	}
+	
+	// Return the sum.
+	return sum;
+}
+
+/// Calculate the checksum for a byte stream.
+/// @param bytes The bytes to calculate a checksum for.
+/// @param len The length of the byte stream.
+/// @return The checksum for the given byte stream.
+short checksumForBytes(char *bytes, int len)
+{
+	// Sum all bytes in the message.
+	int sum = sumOfBytes(bytes, len);
+	// Create a small checksum.
+	short checksum = sum % SHRT_MAX;
+	
+	// Return checksum.
+	return checksum;
+}
+
+/// Verify the checksum matches the transmitted message.
+/// @param transmission The transmission containing the message and checksum.
+/// @param numBytes The number of bytes in the transmission.
+/// @return Whether or not the checksum matches the message.
+bool verifyChecksumForTransmission(char *transmission, size_t numBytes)
+{
+	// Get the checksum from the beginning of the transmission.
+	short givenCheckSum = (short) *(short *)transmission;
+	
+	// Pointer to start of message.
+	char *msg = transmission + sizeof(short);
+	
+	// Length of message.
+	int len = (int) numBytes - sizeof(short);
+	// The checksum for the transmitted message.
+	short apparentCheckSum = checksumForBytes(msg, len);
+	
+	// See if the checksums match.
+	return givenCheckSum == apparentCheckSum;
+}
+
+/// Compose a transmission with a checksum.
+/// @param msg The message to transmit.
+/// @param len The number of characters in the message. This value will be updated for the length of the transmission.
+/// @return A newly allocated block of memory appropriate for transmitting a message with a checksum.
+char *transmissionWithChecksum(char *msg, int *len)
+{
+	int msglen = *len;
+	
+	short checksum = checksumForBytes(msg, msglen);
+	
+	// Allocate block of correct size for checksum and message.
+	char *transmission = malloc(sizeof(short) + (sizeof(char) * msglen));
+	// Copy over the checksum to the beginning of the block.
+	memcpy(transmission, &checksum, sizeof(short));
+	// Copy over the message after the checksum.
+	memcpy(transmission + sizeof(short), msg, sizeof(char) * msglen);
+	
+	// Update length. For the number of chars the checksum represents.
+	*len += (sizeof(short) / sizeof(char));
+	
+	return transmission;
+}
+
+
+#pragma mark - Public API
+
 int layer4_read(char *msg, int max)
 {
-#warning layer4_read
-	return NetworkTransmissionFailure;
+	char *transmission = malloc((sizeof(char) * max) + sizeof(short));
+	int numBytes = layer3_read(transmission, max + sizeof(short));
+	if ( numBytes == NetworkTransmissionFailure ) {
+		return NetworkTransmissionFailure;
+	}
+	
+	// Verify the checksum matches.
+	if ( !verifyChecksumForTransmission(transmission, max) ) {
+		return NetworkTransmissionFailure;
+	}
+	
+	// The real message starts after the checksum.
+	memcpy(msg, transmission + sizeof(short), numBytes);
+	
+	// This is no longer necessary.
+	free(transmission);
+	
+	// Read the number of bytes.
+	return numBytes;
 }
 
 int layer4_write(char *msg, int len)
 {
-#warning layer4_write
-	return NetworkTransmissionFailure;
+	// Create a transmission with checksum from message.
+	char *transmission = transmissionWithChecksum(msg, &len);
+	
+	// Write the transmission.
+	return layer3_write(transmission, len);
 }
