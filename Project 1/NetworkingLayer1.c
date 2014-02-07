@@ -13,7 +13,9 @@
 #include <stdlib.h>	// exit
 #include <string.h>	// strlen, etc.
 
-static int byte = 1;
+static int byte = sizeof(char);
+
+#warning TODO: Introduce random bugs to see if transmission catches the error.
 
 // Sample layer1_read just calls read on stdin
 int layer1_read(char *b)
