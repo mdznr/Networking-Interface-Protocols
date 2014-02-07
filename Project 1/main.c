@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h> // read, write
 
 #include "NetworkingLayer5.h"
 
@@ -172,7 +173,6 @@ void layer5Test()
  depending on how many command-line arguments are supplied
  when the program is run.
  */
-#include <unistd.h> // read, write
 int main(int argc, const char * argv[])
 {
 #ifdef TEST_LAYERS
