@@ -116,7 +116,10 @@ char *transmissionWithChecksum(char *msg, int *len)
 
 int layer4_read(char *msg, int max)
 {
+	// Create buffer for tranmission (checksum + message)
 	char *transmission = malloc((sizeof(char) * max) + sizeof(short));
+	
+	// Read into transmission.
 	int numBytes = layer3_read(transmission, max + sizeof(short));
 	if ( numBytes == NetworkTransmissionFailure ) {
 		return NetworkTransmissionFailure;
@@ -127,7 +130,7 @@ int layer4_read(char *msg, int max)
 		return NetworkTransmissionFailure;
 	}
 	
-	// The real message starts after the checksum.
+	// Copy the real message into msg. It starts after the checksum in transmission.
 	memcpy(msg, transmission + sizeof(short), numBytes);
 	
 	// This is no longer necessary.
