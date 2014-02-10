@@ -130,6 +130,7 @@ int layer4_read(char *msg, int max)
 		return NetworkTransmissionFailure;
 	}
 	
+	// Account for checksum in effective number of bytes transmitted.
 	numBytes -= sizeof(short);
 	
 	// Copy the real message into msg. It starts after the checksum in transmission.
@@ -148,5 +149,10 @@ int layer4_write(char *msg, int len)
 	char *transmission = transmissionWithChecksum(msg, &len);
 	
 	// Write the transmission.
-	return layer3_write(transmission, len);
+	int numBytes = layer3_write(transmission, len);
+	
+	// Account for checksum in effective number of bytes transmitted.
+	numBytes -= sizeof(short);
+	
+	return numBytes;
 }
