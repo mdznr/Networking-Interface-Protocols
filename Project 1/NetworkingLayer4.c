@@ -130,6 +130,8 @@ int layer4_read(char *msg, int max)
 		return NetworkTransmissionFailure;
 	}
 	
+	numBytes -= sizeof(short);
+	
 	// Copy the real message into msg. It starts after the checksum in transmission.
 	memcpy(msg, transmission + sizeof(short), numBytes);
 	
