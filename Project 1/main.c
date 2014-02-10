@@ -58,7 +58,7 @@ void main_writer(const char * argv[])
 	x.gpa = atof(argv[4]);
 	
 	// Send the struct
-	if ( layer5_write( &x ) == NetworkTransmissionFailure ) {
+	if ( layer5_write(&x) == NetworkTransmissionFailure ) {
 		// Something went wrong when sending.
 		fprintf(stderr, "Error sending record\n");
 		exit(1);
@@ -69,13 +69,13 @@ void main_writer(const char * argv[])
 	free(x.lastname);
 }
 
-/// Test raeding functionality.
+/// Test reading functionality.
 void main_reader()
 {
 	// Create student.
 	student x;
 	
-	if ( layer5_read( &x ) == NetworkTransmissionFailure) {
+	if ( layer5_read(&x) == NetworkTransmissionFailure) {
 		fprintf(stderr, "Reading error\n");
 		exit(1);
 	}
@@ -90,7 +90,7 @@ void main_reader()
 #ifdef TEST_LAYERS
 #pragma mark - Layer Tests
 
-// Layer 1
+/// Layer 1
 void layer1Test()
 {
 	printf("\nLayer 1 Test Started\n");
@@ -105,25 +105,23 @@ void layer1Test()
 	printf("\nLayer 1 Test Ended\n");
 }
 
-// Layer 2
+/// Layer 2
 void layer2Test()
 {
 	printf("\nLayer 2 Test Started\n");
 	
 	char *b = "abc";
-	int len = (int) strnlen(b, 256);
+	int len = (int) strnlen(b, 256) + 1;
 	printf("\nlayer2_write: %d\n", layer2_write(b, len));
 	
-	char *a = malloc(sizeof(char) * (len+1));
-	a[len] = '\0';
+	char a[len+1];
 	printf("layer2_read: %d\n", layer2_read(a, len));
 	printf("read: %s", a);
-	free(a);
 	
 	printf("\nLayer 2 Test Ended\n");
 }
 
-// Layer 3
+/// Layer 3
 void layer3Test()
 {
 	printf("\nLayer 3 Test Started\n");
@@ -141,7 +139,7 @@ void layer3Test()
 	printf("\nLayer 3 Test Ended\n");
 }
 
-// Layer 4
+/// Layer 4
 void layer4Test()
 {
 	printf("\nLayer 4 Test Started\n");
@@ -160,7 +158,7 @@ void layer4Test()
 	printf("\nLayer 4 Test Ended\n");
 }
 
-// Layer 5
+/// Layer 5
 void layer5Test()
 {
 	printf("\nLayer 5 Test Started\n");
@@ -180,6 +178,16 @@ void layer5Test()
 	
 	printf("\nLayer 5 Test Ended\n");
 }
+
+/// Test all the layers.
+void testLayers()
+{
+//	layer1Test();
+	layer2Test();
+//	layer3Test();
+//	layer4Test();
+//	layer5Test();
+}
 #endif
 
 
@@ -194,11 +202,7 @@ int main(int argc, const char * argv[])
 {
 #ifdef TEST_LAYERS
 	// Test the different layers
-//	layer1Test();
-//	layer2Test();
-//	layer3Test();
-//	layer4Test();
-	layer5Test();
+	testLayers();
 	return 1;
 #endif
 	
