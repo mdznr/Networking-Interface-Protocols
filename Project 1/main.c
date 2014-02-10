@@ -87,6 +87,7 @@ void main_reader()
 }
 
 
+#ifdef TEST_LAYERS
 #pragma mark - Layer Tests
 
 // Layer 1
@@ -162,8 +163,24 @@ void layer4Test()
 // Layer 5
 void layer5Test()
 {
+	printf("\nLayer 5 Test Started\n");
 	
+	// Create Student.
+	student x;
+	x.firstname = "Matt";
+	x.lastname = "Zanchelli";
+	x.rin = 660994127;
+	x.gpa = 3.81;
+	
+	printf("layer5_write: %d\n", layer5_write(&x));
+	
+	student y;
+	printf("layer5_read: %d\n", layer5_read(&y));
+	printf("read: %s %s %d %f", y.firstname, y.lastname, y.rin, y.gpa);
+	
+	printf("\nLayer 5 Test Ended\n");
 }
+#endif
 
 
 #pragma mark - Main
@@ -180,7 +197,7 @@ int main(int argc, const char * argv[])
 //	layer1Test();
 //	layer2Test();
 //	layer3Test();
-	layer4Test();
+//	layer4Test();
 	layer5Test();
 	return 1;
 #endif
