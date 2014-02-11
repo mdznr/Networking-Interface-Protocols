@@ -108,7 +108,7 @@ int layer4_read(char *msg, int max)
 	}
 	
 	// Check if checksum is correct.
-	int receivedChecksum = checksumForBytes(msg, max);
+	int receivedChecksum = checksumForBytes(msg, numBytes);
 	if ( receivedChecksum != checksum ) {
 		return NetworkTransmissionFailure;
 	}
