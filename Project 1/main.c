@@ -110,7 +110,8 @@ void layer2Test()
 {
 	printf("\nLayer 2 Test Started\n");
 	
-	char *b = "abc";
+	// 15 chars + null terminator
+	char *b = "abcdefghijklmno";
 	int len = (int) strnlen(b, 256) + 1;
 	printf("\nlayer2_write: %d\n", layer2_write(b, len));
 	
@@ -183,8 +184,8 @@ void layer5Test()
 void testLayers()
 {
 //	layer1Test();
-	layer2Test();
-//	layer3Test();
+//	layer2Test();
+	layer3Test();
 //	layer4Test();
 //	layer5Test();
 }
