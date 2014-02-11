@@ -22,6 +22,7 @@ void NetworkingLayer1Tests()
 	END_TEST();
 }
 
+/// Test the transmission of one byte.
 bool test_TransmitionOfByte()
 {
 	char i = 'i';
