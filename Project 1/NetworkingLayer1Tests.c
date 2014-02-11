@@ -9,17 +9,25 @@
 #include <stdio.h>
 
 #include "NetworkingLayer1.h"
+#include "Testing.h"
+
+bool test_TransmitionOfByte();
 
 void NetworkingLayer1Tests()
 {
-	printf("\nLayer 1 Test Started\n");
+	START_TEST("NetworkingLayer1");
 	
-	char b = 'b';
-	printf("\nlayer1_write: %d\n", layer1_write(b));
+	test_TransmitionOfByte();
 	
-	char a;
-	printf("layer1_read: %d\n", layer1_read(&a));
-	printf("read: %c", a);
+	END_TEST();
+}
+
+bool test_TransmitionOfByte()
+{
+	char i = 'i';
+	int write = layer1_write(i);
+	char o;
+	int read = layer1_read(&o);
 	
-	printf("\nLayer 1 Test Ended\n");
+	return (i == o) && (write == read);
 }
