@@ -32,12 +32,12 @@ void NetworkingLayer2Tests()
 bool test_TransmissionOfZero()
 {
 	int write = layer2_write(NULL, 0);
-	if ( write ) {
+	if ( write != 0 ) {
 		return false;
 	}
 	
 	int read = layer2_read(NULL, 1);
-	if ( read ) {
+	if ( read != 0 ) {
 		return false;
 	}
 	
@@ -49,13 +49,13 @@ bool test_TransmissionOfLess()
 	int len = 4;
 	char *i = "abc";
 	int write = layer2_write(i, len);
-	if ( write != len ) {
+	if ( write != len || write == NetworkTransmissionFailure ) {
 		return false;
 	}
 	
 	char o[len];
 	int read = layer2_read(o, len);
-	if ( read != len ) {
+	if ( read != len || read == NetworkTransmissionFailure ) {
 		return false;
 	}
 	
@@ -72,15 +72,20 @@ bool test_TransmissionOfLess()
 
 bool test_TransmissionOfEqual()
 {
-	/*
-	char *c = "abcdefghijklmno";
-	len = (int) strnlen(c, 256) + 1;
-	printf("\nlayer2_write: %d\n", layer2_write(c, len));
-	char d[len+1];
-	printf("layer2_read: %d\n", layer2_read(d, len));
-	printf("read: %s", d);
-	 */
-	return false;
+	int len = 16;
+	char *i = "abcdefghijklmno";
+	int write = layer2_write(i, len);
+	if ( write != len || write == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	char o[len];
+	int read = layer2_read(o, len);
+	if ( read != len || read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
 }
 
 bool test_TransmissionOfMore()
