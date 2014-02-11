@@ -47,7 +47,6 @@ void main_writer(const char * argv[])
 	student x;
 	
 	// The first command-line argument is the firstname, the second is the lastname.
-#warning will strdup cause memory leaks? using argv[x] directly causes warnings
 	x.firstname = strndup(argv[1], MAX_NAME_LEN);
 	x.lastname = strndup(argv[2], MAX_NAME_LEN);
 	
