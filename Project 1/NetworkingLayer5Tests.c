@@ -8,13 +8,24 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "NetworkingLayer5.h"
+#include "Testing.h"
+
+bool testTransmissionOfStudent();
 
 void NetworkingLayer5Tests()
 {
-	printf("\nLayer 5 Test Started\n");
+	START_TEST("NetworkingLayer5");
 	
+	testTransmissionOfStudent();
+	
+	END_TEST();
+}
+
+bool testTransmissionOfStudent()
+{
 	// Create Student.
 	student x;
 	x.firstname = "Matt";
@@ -22,13 +33,32 @@ void NetworkingLayer5Tests()
 	x.rin = 660994127;
 	x.gpa = 3.81;
 	
-	printf("\nlayer5_write: %d\n", layer5_write(&x));
+	int write = layer5_write(&x);
 	
 	student y;
-	printf("layer5_read: %d\n", layer5_read(&y));
-	printf("read: %s %s %d %f", y.firstname, y.lastname, y.rin, y.gpa);
-	free(y.firstname);
-	free(y.lastname);
+	int read = layer5_read(&y);
 	
-	printf("\nLayer 5 Test Ended\n");
+	if ( strncmp(x.firstname, y.firstname, 256) != 0 ) {
+		free(x.firstname);
+		return false;
+	} else {
+		free(x.firstname);
+	}
+	
+	if ( strncmp(x.lastname, y.lastname, 256) != 0 ) {
+		free(x.lastname);
+		return false;
+	} else {
+		free(x.lastname);
+	}
+	
+	if ( x.rin != y.rin ) {
+		return false;
+	}
+	
+	if ( x.gpa != y.gpa ) {
+		return false;
+	}
+	
+	return true;
 }
