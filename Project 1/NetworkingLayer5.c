@@ -48,20 +48,24 @@ int layer5_read(student *stu)
 	free(name);
 	
 	// RIN
-	status = layer4_read((char *)&(stu->rin), sizeof(int));
+	char rin[256];
+	status = layer4_read(rin, 256);
 	if ( status == NetworkTransmissionFailure ) {
 		return NetworkTransmissionFailure;
 	} else {
 		totalBytes += status;
 	}
+	stu->rin = atoi(rin);
 	
 	// GPA
-	status = layer4_read((char *)&(stu->gpa), sizeof(double));
+	char gpa[256];
+	status = layer4_read(gpa, 256);
 	if ( status == NetworkTransmissionFailure ) {
 		return NetworkTransmissionFailure;
 	} else {
 		totalBytes += status;
 	}
+	stu->gpa = atof(gpa);
 	
 	return totalBytes;
 }
@@ -75,7 +79,7 @@ int layer5_write(student *stu)
 	int status = 0;
 	
 	// Fistname
-	status = layer4_write(stu->firstname, sizeof(char) * (int) strnlen(stu->firstname, 256));
+	status = layer4_write(stu->firstname, sizeof(char) * (int) strnlen(stu->firstname, 256)+1);
 	if ( status == NetworkTransmissionFailure ) {
 		return NetworkTransmissionFailure;
 	} else {
@@ -83,7 +87,7 @@ int layer5_write(student *stu)
 	}
 	
 	// Lastname
-	status = layer4_write(stu->lastname, sizeof(char) * (int) strnlen(stu->lastname, 256));
+	status = layer4_write(stu->lastname, sizeof(char) * (int) strnlen(stu->lastname, 256)+1);
 	if ( status == NetworkTransmissionFailure ) {
 		return NetworkTransmissionFailure;
 	} else {
@@ -91,7 +95,12 @@ int layer5_write(student *stu)
 	}
 	
 	// RIN
-	status = layer4_write((char *)&(stu->rin), sizeof(int));
+	char rin[256];
+#warning does this need size specifier?
+	snprintf(rin, 256, "%d", stu->rin);
+	char *rinString = strndup(rin, 256);
+	status = layer4_write(rinString, (int) strnlen(rinString, 256)+1);
+	free(rinString);
 	if ( status == NetworkTransmissionFailure ) {
 		return NetworkTransmissionFailure;
 	} else {
@@ -99,7 +108,12 @@ int layer5_write(student *stu)
 	}
 	
 	// GPA
-	status = layer4_write((char *)&(stu->gpa), sizeof(double));
+	char gpa[256];
+#warning does this need size specifier?
+	snprintf(gpa, 256, "%f", stu->gpa);
+	char *gpaString = strndup(gpa, 256);
+	status = layer4_write(gpaString, (int) strnlen(gpaString, 256)+1);
+	free(gpaString);
 	if ( status == NetworkTransmissionFailure ) {
 		return NetworkTransmissionFailure;
 	} else {
