@@ -9,6 +9,7 @@
 #ifndef Project_1_Boolean_h
 #define Project_1_Boolean_h
 
+/// Defintion of a Boolean.
 typedef enum {
     false = 0,
     true  = 1
