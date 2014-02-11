@@ -71,7 +71,6 @@ int layer3_write(char *msg, int len)
 		i += bytesTransmitted;
 	}
 	
-#warning TODO: Do not send empty chunk, if sent incomplete chunk.
 	// Saturated last chunk, needing to send empty chunk.
 	if ( bytesTransmitted == maxChunkSize ) {
 		// Write empty chunk to denote end of message.
