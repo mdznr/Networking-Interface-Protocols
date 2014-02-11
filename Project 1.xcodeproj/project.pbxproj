@@ -14,6 +14,12 @@
 		C9D4B991189AAF4B001C4F4F /* NetworkingLayer3.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B990189AAF4B001C4F4F /* NetworkingLayer3.c */; };
 		C9D4B994189AB73E001C4F4F /* NetworkingLayer4.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B993189AB73E001C4F4F /* NetworkingLayer4.c */; };
 		C9D4B997189AB753001C4F4F /* NetworkingLayer5.c in Sources */ = {isa = PBXBuildFile; fileRef = C9D4B996189AB752001C4F4F /* NetworkingLayer5.c */; };
+		C9DC832B18A9FD13006E94EF /* NetworkingLayersTests.c in Sources */ = {isa = PBXBuildFile; fileRef = C9DC832A18A9FD13006E94EF /* NetworkingLayersTests.c */; };
+		C9DC832D18A9FD87006E94EF /* NetworkingLayer1Tests.c in Sources */ = {isa = PBXBuildFile; fileRef = C9DC832C18A9FD87006E94EF /* NetworkingLayer1Tests.c */; };
+		C9DC832F18A9FDB8006E94EF /* NetworkingLayer2Tests.c in Sources */ = {isa = PBXBuildFile; fileRef = C9DC832E18A9FDB8006E94EF /* NetworkingLayer2Tests.c */; };
+		C9DC833118A9FDDE006E94EF /* NetworkingLayer3Tests.c in Sources */ = {isa = PBXBuildFile; fileRef = C9DC833018A9FDDE006E94EF /* NetworkingLayer3Tests.c */; };
+		C9DC833318A9FDEF006E94EF /* NetworkingLayer4Tests.c in Sources */ = {isa = PBXBuildFile; fileRef = C9DC833218A9FDEF006E94EF /* NetworkingLayer4Tests.c */; };
+		C9DC833518A9FE01006E94EF /* NetworkingLayer5Tests.c in Sources */ = {isa = PBXBuildFile; fileRef = C9DC833418A9FE01006E94EF /* NetworkingLayer5Tests.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +53,18 @@
 		C9D4B996189AB752001C4F4F /* NetworkingLayer5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer5.c; sourceTree = "<group>"; };
 		C9D4B998189ABE18001C4F4F /* NetworkingReturnValues.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingReturnValues.h; sourceTree = "<group>"; };
 		C9D4B999189ABEB2001C4F4F /* Student.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		C9DC832A18A9FD13006E94EF /* NetworkingLayersTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayersTests.c; sourceTree = "<group>"; };
+		C9DC832C18A9FD87006E94EF /* NetworkingLayer1Tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer1Tests.c; sourceTree = "<group>"; };
+		C9DC832E18A9FDB8006E94EF /* NetworkingLayer2Tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer2Tests.c; sourceTree = "<group>"; };
+		C9DC833018A9FDDE006E94EF /* NetworkingLayer3Tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer3Tests.c; sourceTree = "<group>"; };
+		C9DC833218A9FDEF006E94EF /* NetworkingLayer4Tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer4Tests.c; sourceTree = "<group>"; };
+		C9DC833418A9FE01006E94EF /* NetworkingLayer5Tests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkingLayer5Tests.c; sourceTree = "<group>"; };
+		C9DC833718AA009B006E94EF /* NetworkingLayersTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayersTests.h; sourceTree = "<group>"; };
+		C9DC833818AA00CD006E94EF /* NetworkingLayer1Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer1Tests.h; sourceTree = "<group>"; };
+		C9DC833918AA00EB006E94EF /* NetworkingLayer2Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer2Tests.h; sourceTree = "<group>"; };
+		C9DC833A18AA0102006E94EF /* NetworkingLayer3Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer3Tests.h; sourceTree = "<group>"; };
+		C9DC833B18AA0128006E94EF /* NetworkingLayer4Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer4Tests.h; sourceTree = "<group>"; };
+		C9DC833C18AA013A006E94EF /* NetworkingLayer5Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer5Tests.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,9 +112,29 @@
 				C9D4B98B189AA86E001C4F4F /* NetworkingLayer1.h */,
 				C9D4B989189AA76C001C4F4F /* NetworkingLayer1.c */,
 				C9D4B998189ABE18001C4F4F /* NetworkingReturnValues.h */,
+				C9DC833618A9FE14006E94EF /* Tests */,
 				C9D4B982189AA6D7001C4F4F /* Project_1.1 */,
 			);
 			path = "Project 1";
+			sourceTree = "<group>";
+		};
+		C9DC833618A9FE14006E94EF /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C9DC833718AA009B006E94EF /* NetworkingLayersTests.h */,
+				C9DC832A18A9FD13006E94EF /* NetworkingLayersTests.c */,
+				C9DC833818AA00CD006E94EF /* NetworkingLayer1Tests.h */,
+				C9DC832C18A9FD87006E94EF /* NetworkingLayer1Tests.c */,
+				C9DC833918AA00EB006E94EF /* NetworkingLayer2Tests.h */,
+				C9DC832E18A9FDB8006E94EF /* NetworkingLayer2Tests.c */,
+				C9DC833A18AA0102006E94EF /* NetworkingLayer3Tests.h */,
+				C9DC833018A9FDDE006E94EF /* NetworkingLayer3Tests.c */,
+				C9DC833B18AA0128006E94EF /* NetworkingLayer4Tests.h */,
+				C9DC833218A9FDEF006E94EF /* NetworkingLayer4Tests.c */,
+				C9DC833C18AA013A006E94EF /* NetworkingLayer5Tests.h */,
+				C9DC833418A9FE01006E94EF /* NetworkingLayer5Tests.c */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,10 +188,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9DC832B18A9FD13006E94EF /* NetworkingLayersTests.c in Sources */,
+				C9DC832D18A9FD87006E94EF /* NetworkingLayer1Tests.c in Sources */,
+				C9DC833318A9FDEF006E94EF /* NetworkingLayer4Tests.c in Sources */,
 				C9D4B981189AA6D7001C4F4F /* main.c in Sources */,
+				C9DC833118A9FDDE006E94EF /* NetworkingLayer3Tests.c in Sources */,
 				C9D4B997189AB753001C4F4F /* NetworkingLayer5.c in Sources */,
 				C9D4B98E189AA9D2001C4F4F /* NetworkingLayer2.c in Sources */,
 				C9D4B98A189AA76C001C4F4F /* NetworkingLayer1.c in Sources */,
+				C9DC832F18A9FDB8006E94EF /* NetworkingLayer2Tests.c in Sources */,
+				C9DC833518A9FE01006E94EF /* NetworkingLayer5Tests.c in Sources */,
 				C9D4B994189AB73E001C4F4F /* NetworkingLayer4.c in Sources */,
 				C9D4B991189AAF4B001C4F4F /* NetworkingLayer3.c in Sources */,
 			);
