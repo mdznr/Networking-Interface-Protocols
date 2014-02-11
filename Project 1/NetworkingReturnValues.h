@@ -9,11 +9,14 @@
 #ifndef Project_1_NetworkingErrors_h
 #define Project_1_NetworkingErrors_h
 
-/// This value is returned when network transmission fails.
-static int NetworkTransmissionFailure = -1;
-
-/// This value is returned when network transmission succeeds.
-/// @discussion A successful transmission won't always be returned, instead returning the number of bytes transmitted.
-static int NetworkTransmissionSuccess = 1;
+/// The return status of a network transmission.
+typedef enum {
+	/// This value is returned when network transmission fails.
+	NetworkTransmissionFailure = -1,
+	
+	/// This value is returned when network transmission succeeds.
+	/// @discussion A successful transmission won't always be returned, instead returning the number of bytes transmitted.
+	NetworkTransmissionSuccess = 1
+} NetworkTransmissionStatus;
 
 #endif

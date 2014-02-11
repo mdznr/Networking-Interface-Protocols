@@ -20,7 +20,10 @@
  Note that it is also valid to send/receive a chunk of size 0.
  */
 
-static int maxChunkSize = 16;
+enum {
+	/// The maximum size of a single chunk.
+	maxChunkSize = 16
+};
 
 /// Reads a chunk and stores the incoming bytes in a buffer.
 /// @param chunk The chunk to read into.
