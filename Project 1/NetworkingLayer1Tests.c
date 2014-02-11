@@ -26,8 +26,15 @@ bool test_TransmitionOfByte()
 {
 	char i = 'i';
 	int write = layer1_write(i);
+	if ( write != 1 || write == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
 	char o;
 	int read = layer1_read(&o);
+	if ( read != 1 || write == NetworkTransmissionFailure ) {
+		return false;
+	}
 	
 	return (i == o) && (write == read);
 }
