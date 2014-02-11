@@ -11,7 +11,7 @@
 
 #include "NetworkingLayer5.h"
 
-void NetworkingLayer5_test()
+void NetworkingLayer5Tests()
 {
 	printf("\nLayer 5 Test Started\n");
 	

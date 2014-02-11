@@ -10,7 +10,7 @@
 
 #include "NetworkingLayer1.h"
 
-void NetworkingLayer1_test()
+void NetworkingLayer1Tests()
 {
 	printf("\nLayer 1 Test Started\n");
 	

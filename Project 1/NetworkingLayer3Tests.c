@@ -11,7 +11,7 @@
 
 #include "NetworkingLayer3.h"
 
-void NetworkingLayer3_test()
+void NetworkingLayer3Tests()
 {
 	printf("\nLayer 3 Test Started\n");
 	

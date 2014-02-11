@@ -15,11 +15,11 @@
 #include "NetworkingLayer5Tests.h"
 
 /// Test all the layers.
-void test()
+void NetworkingLayersTest()
 {
-	NetworkingLayer1_test();
-	NetworkingLayer2_test();
-	NetworkingLayer3_test();
-	NetworkingLayer4_test();
-	NetworkingLayer5_test();
+	NetworkingLayer1Tests();
+	NetworkingLayer2Tests();
+	NetworkingLayer3Tests();
+	NetworkingLayer4Tests();
+	NetworkingLayer5Tests();
 }

@@ -11,7 +11,7 @@
 
 #include "NetworkingLayer2.h"
 
-void NetworkingLayer2_test()
+void NetworkingLayer2Tests()
 {
 	printf("\nLayer 2 Test Started\n");
 	int len;

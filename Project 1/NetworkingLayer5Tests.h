@@ -9,6 +9,6 @@
 #ifndef Project_1_NetworkingLayer5Tests_h
 #define Project_1_NetworkingLayer5Tests_h
 
-void test();
+void NetworkingLayer5Tests();
 
 #endif

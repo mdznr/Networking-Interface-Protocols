@@ -11,7 +11,7 @@
 
 #include "NetworkingLayer4.h"
 
-void NetworkingLayer4_test()
+void NetworkingLayer4Tests()
 {
 	printf("\nLayer 4 Test Started\n");
 	

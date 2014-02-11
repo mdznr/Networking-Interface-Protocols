@@ -93,7 +93,7 @@ int main(int argc, const char * argv[])
 {
 	
 #ifdef TEST_LAYERS
-	test();
+	NetworkingLayersTest();
 	return 1;
 #endif
 	
