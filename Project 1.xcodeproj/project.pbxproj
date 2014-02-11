@@ -65,6 +65,7 @@
 		C9DC833A18AA0102006E94EF /* NetworkingLayer3Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer3Tests.h; sourceTree = "<group>"; };
 		C9DC833B18AA0128006E94EF /* NetworkingLayer4Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer4Tests.h; sourceTree = "<group>"; };
 		C9DC833C18AA013A006E94EF /* NetworkingLayer5Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkingLayer5Tests.h; sourceTree = "<group>"; };
+		C9DC833D18AA761A006E94EF /* Testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Testing.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +122,7 @@
 		C9DC833618A9FE14006E94EF /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C9DC833D18AA761A006E94EF /* Testing.h */,
 				C9DC833718AA009B006E94EF /* NetworkingLayersTests.h */,
 				C9DC832A18A9FD13006E94EF /* NetworkingLayersTests.c */,
 				C9DC833818AA00CD006E94EF /* NetworkingLayer1Tests.h */,
