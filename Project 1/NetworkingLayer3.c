@@ -15,22 +15,31 @@
 #include "NetworkingLayer2.h"
 #include "Algorithm.h"
 
+/*
+ Composition of chunks:
+ 
+ [Saturated Message 0][Saturated Message 1]...[Saturated Message N][empty]
+ or
+ [Saturated Message 0][Saturated Message 1]...[Unsaturated Message N]
+ 
+ */
+
 int layer3_read(char *msg, int max)
-{	
+{
 	// Keep track of number of bytes transmitted.
 	int i = 0;
 	
 	// Read bytes into msg.
 	while ( i < max ) {
-#warning TODO: Check if can stop reading early.
-		if ( 0 ) {
-			break;
-		}
-		
 		// Read a chunk. Check for failure.
 		int bytesTransmitted = layer2_read(&msg[i], max-i);
 		if ( bytesTransmitted == NetworkTransmissionFailure ) {
 			return NetworkTransmissionFailure;
+		}
+		
+		// Reached empty chunk.
+		if ( bytesTransmitted == 0 ) {
+			break;
 		}
 		
 		// Count transmitted bytes.
@@ -47,18 +56,31 @@ int layer3_write(char *msg, int len)
 	int i = 0;
 	
 	// Write all bytes.
+	int bytesTransmitted = 0;
 	while ( i < len ) {
-		// Find size of chunk to send.
-		int numberOfBytesToTransmit = MAX(len-i, maxChunkSize);
+		// Find size of chunk to send. Limit to maxChunkSize.
+		int numberOfBytesToTransmit = MINIMUM(len-i, maxChunkSize);
 		
 		// Write a chunk. Check for failure.
-		int bytesTransmitted = layer2_write(&msg[i], numberOfBytesToTransmit);
+		bytesTransmitted = layer2_write(&msg[i], numberOfBytesToTransmit);
 		if ( bytesTransmitted == NetworkTransmissionFailure ) {
 			return NetworkTransmissionFailure;
 		}
 		
 		// Count transmitted bytes.
 		i += bytesTransmitted;
+	}
+	
+#warning TODO: Do not send empty chunk, if sent incomplete chunk.
+	// Incomplete
+	if ( bytesTransmitted != maxChunkSize ) {
+		
+	}
+	
+	// Write empty chunk to denote end of message.
+	int transmissionStatus = layer2_write(NULL, 0);
+	if ( transmissionStatus == NetworkTransmissionFailure ) {
+		return NetworkTransmissionFailure;
 	}
 	
 	// Return the number of bytes written.
