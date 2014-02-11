@@ -33,6 +33,11 @@ static char chunkUnsaturated = '<';
 
 int layer2_read(char *chunk, int max)
 {
+	// Must have room to read into.
+	if ( max < 1 ) {
+		return NetworkTransmissionFailure;
+	}
+	
 	// Check saturation status.
 	char saturationStatus;
 	int transmissionStatus = layer1_read(&saturationStatus);
@@ -61,6 +66,11 @@ int layer2_read(char *chunk, int max)
 	} else {
 		// Corrupted transmission.
 		return NetworkTransmissionFailure;
+	}
+	
+	// Need to be able to transmit chunk of size 0.
+	if ( size == 0 ) {
+		return 0;
 	}
 	
 	// Ensure chunk can fit within buffer.
