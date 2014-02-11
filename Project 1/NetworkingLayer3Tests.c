@@ -11,25 +11,25 @@
 #include "NetworkingLayer3.h"
 #include "Testing.h"
 
-bool test_TransmissionOfZero();
-bool test_TransmissionOfLess();
-bool test_TransmissionOfEqual();
-bool test_TransmissionOfMore();
+bool test_TransmissionOfZeroChunks();
+bool test_TransmissionOfLessThanOneChunk();
+bool test_TransmissionOfExactlyOneChunk();
+bool test_TransmissionOfMoreThanOneChunk();
 
 void NetworkingLayer3Tests()
 {
 	START_TEST("NetworkingLayer3");
 	
-	test_TransmissionOfZero();
-	test_TransmissionOfLess();
-	test_TransmissionOfEqual();
-	test_TransmissionOfMore();
+	test_TransmissionOfZeroChunks();
+	test_TransmissionOfLessThanOneChunk();
+	test_TransmissionOfExactlyOneChunk();
+	test_TransmissionOfMoreThanOneChunk();
 	
 	END_TEST();
 }
 
 /// Test tranmission of zero bytes.
-bool test_TransmissionOfZero()
+bool test_TransmissionOfZeroChunks()
 {
 	int write = layer3_write(NULL, 0);
 	if ( write == NetworkTransmissionFailure ) {
@@ -45,7 +45,7 @@ bool test_TransmissionOfZero()
 }
 
 /// Test transmission of less than one chunk.
-bool test_TransmissionOfLess()
+bool test_TransmissionOfLessThanOneChunk()
 {
 	int len = 7;
 	char *i = "abcdef";
@@ -64,7 +64,7 @@ bool test_TransmissionOfLess()
 }
 
 /// Test transmission of one full chunk.
-bool test_TransmissionOfEqual()
+bool test_TransmissionOfExactlyOneChunk()
 {
 	int len = 16;
 	char *i = "0123456789012345";
@@ -83,7 +83,7 @@ bool test_TransmissionOfEqual()
 }
 
 /// Test transmission of more than one full chunk.
-bool test_TransmissionOfMore()
+bool test_TransmissionOfMoreThanOneChunk()
 {
 	int len = 37;
 	char *i = "abcdefghijklmnopqrstuvwxyz0123456789";

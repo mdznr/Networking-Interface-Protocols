@@ -7,22 +7,96 @@
 //
 
 #include <stdio.h>
-#include <string.h> // strlen
 
 #include "NetworkingLayer4.h"
+#include "Testing.h"
+
+bool test_TransmissionOfChecksummedZeroChunks();
+bool test_TransmissionOfChecksummedLessThanOneChunk();
+bool test_TransmissionOfChecksummedExactlyOneChunk();
+bool test_TransmissionOfChecksummedMoreThanOneChunk();
 
 void NetworkingLayer4Tests()
 {
-	printf("\nLayer 4 Test Started\n");
+	START_TEST("NetworkingLayer4");
 	
-	char *b = "abcdefghijklmnopqrstuvwxyz1234567";
-	int len = (int) strnlen(b, 256) + 1;
-	len = layer4_write(b, len);
-	printf("\nlayer4_write: %d\n", len);
+	test_TransmissionOfChecksummedZeroChunks();
+	test_TransmissionOfChecksummedLessThanOneChunk();
+	test_TransmissionOfChecksummedExactlyOneChunk();
+	test_TransmissionOfChecksummedMoreThanOneChunk();
 	
-	char a[len+1];
-	printf("layer4_read: %d\n", layer4_read(a, len));
-	printf("read: %s", a);
+	END_TEST();
+}
+
+/// Test tranmission of zero bytes.
+bool test_TransmissionOfChecksummedZeroChunks()
+{
+	int write = layer4_write(NULL, 0);
+	if ( write == NetworkTransmissionFailure ) {
+		return false;
+	}
 	
-	printf("\nLayer 4 Test Ended\n");
+	int read = layer4_read(NULL, 1);
+	if ( read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
+}
+
+/// Test transmission of less than one chunk.
+bool test_TransmissionOfChecksummedLessThanOneChunk()
+{
+	int len = 7;
+	char *i = "abcdef";
+	int write = layer4_write(i, len);
+	if ( write != len || write == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	char o[len];
+	int read = layer4_read(o, len);
+	if ( read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
+}
+
+/// Test transmission of one full chunk.
+bool test_TransmissionOfChecksummedExactlyOneChunk()
+{
+	int len = 16;
+	char *i = "0123456789012345";
+	int write = layer4_write(i, len);
+	if ( write != len || write == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	char o[len];
+	int read = layer4_read(o, len);
+	if ( read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
+}
+
+/// Test transmission of more than one full chunk.
+bool test_TransmissionOfChecksummedMoreThanOneChunk()
+{
+	int len = 37;
+	char *i = "abcdefghijklmnopqrstuvwxyz0123456789";
+	int write = layer4_write(i, len);
+	if ( write != len || write == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	char o[len];
+	int read = layer4_read(o, len);
+	if ( read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
 }
