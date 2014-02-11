@@ -7,7 +7,6 @@
 //
 
 #include <stdio.h>
-#include <string.h> // strlen
 
 #include "NetworkingLayer3.h"
 #include "Testing.h"
