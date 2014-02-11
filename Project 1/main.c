@@ -158,15 +158,14 @@ void layer4Test()
 	printf("\nLayer 4 Test Started\n");
 	
 	char *b = "abcdefghijklmnopqrstuvwxyz1234567";
-	int len = (int) strnlen(b, 256);
+	int len = (int) strnlen(b, 256) + 1;
 	len = layer4_write(b, len);
 	printf("\nlayer4_write: %d\n", len);
 	
-	char *a = malloc(sizeof(char) * (len+1));
+	char a[len+1];
 	a[len] = '\0';
 	printf("layer4_read: %d\n", layer4_read(a, len));
 	printf("read: %s", a);
-	free(a);
 	
 	printf("\nLayer 4 Test Ended\n");
 }
@@ -197,8 +196,8 @@ void testLayers()
 {
 //	layer1Test();
 //	layer2Test();
-	layer3Test();
-//	layer4Test();
+//	layer3Test();
+	layer4Test();
 //	layer5Test();
 }
 #endif
