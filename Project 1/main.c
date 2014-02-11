@@ -15,7 +15,7 @@
 
 #define MAX_NAME_LEN 80
 
-#define TEST_LAYERS
+//#define TEST_LAYERS
 
 #ifdef TEST_LAYERS
 #include "NetworkingLayer1.h"
@@ -48,8 +48,8 @@ void main_writer(const char * argv[])
 	
 	// The first command-line argument is the firstname, the second is the lastname.
 #warning will strdup cause memory leaks? using argv[x] directly causes warnings
-	x.firstname = strdup(argv[1]);
-	x.lastname = strdup(argv[2]);
+	x.firstname = strndup(argv[1], MAX_NAME_LEN);
+	x.lastname = strndup(argv[2], MAX_NAME_LEN);
 	
 	// argv[3] is the id.
 	x.rin = atoi(argv[3]);
@@ -198,8 +198,8 @@ void testLayers()
 //	layer1Test();
 //	layer2Test();
 //	layer3Test();
-	layer4Test();
-//	layer5Test();
+//	layer4Test();
+	layer5Test();
 }
 #endif
 
