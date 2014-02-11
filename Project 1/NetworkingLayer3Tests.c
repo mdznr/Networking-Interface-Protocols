@@ -10,18 +10,94 @@
 #include <string.h> // strlen
 
 #include "NetworkingLayer3.h"
+#include "Testing.h"
+
+bool test_TransmissionOfZero();
+bool test_TransmissionOfLess();
+bool test_TransmissionOfEqual();
+bool test_TransmissionOfMore();
 
 void NetworkingLayer3Tests()
 {
-	printf("\nLayer 3 Test Started\n");
+	START_TEST("NetworkingLayer3");
 	
-	char *b = "abcdefghijklmnopqrstuvwxyz1234567";
-	int len = (int) strnlen(b, 256);
-	printf("\nlayer3_write: %d\n", layer3_write(b, len));
+	test_TransmissionOfZero();
+	test_TransmissionOfLess();
+	test_TransmissionOfEqual();
+	test_TransmissionOfMore();
 	
-	char a[len+1];
-	printf("layer3_read: %d\n", layer3_read(a, len));
-	printf("read: %s", a);
+	END_TEST();
+}
+
+/// Test tranmission of zero bytes.
+bool test_TransmissionOfZero()
+{
+	int write = layer3_write(NULL, 0);
+	if ( write == NetworkTransmissionFailure ) {
+		return false;
+	}
 	
-	printf("\nLayer 3 Test Ended\n");
+	int read = layer3_read(NULL, 1);
+	if ( read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
+}
+
+/// Test transmission of less than one chunk.
+bool test_TransmissionOfLess()
+{
+	int len = 7;
+	char *i = "abcdef";
+	int write = layer3_write(i, len);
+	if ( write != len || write == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	char o[len];
+	int read = layer3_read(o, len);
+	if ( read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
+}
+
+/// Test transmission of one full chunk.
+bool test_TransmissionOfEqual()
+{
+	int len = 16;
+	char *i = "0123456789012345";
+	int write = layer3_write(i, len);
+	if ( write != len || write == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	char o[len];
+	int read = layer3_read(o, len);
+	if ( read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
+}
+
+/// Test transmission of more than one full chunk.
+bool test_TransmissionOfMore()
+{
+	int len = 37;
+	char *i = "abcdefghijklmnopqrstuvwxyz0123456789";
+	int write = layer3_write(i, len);
+	if ( write != len || write == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	char o[len];
+	int read = layer3_read(o, len);
+	if ( read == NetworkTransmissionFailure ) {
+		return false;
+	}
+	
+	return true;
 }
