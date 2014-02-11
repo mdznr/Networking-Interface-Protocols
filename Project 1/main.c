@@ -15,7 +15,7 @@
 
 #define MAX_NAME_LEN 80
 
-//#define TEST_LAYERS
+#define TEST_LAYERS
 
 #ifdef TEST_LAYERS
 #include "NetworkingLayer1.h"
@@ -195,10 +195,10 @@ void layer5Test()
 void testLayers()
 {
 //	layer1Test();
-//	layer2Test();
+	layer2Test();
 //	layer3Test();
 //	layer4Test();
-	layer5Test();
+//	layer5Test();
 }
 #endif
 

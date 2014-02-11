@@ -31,7 +31,7 @@ int layer3_read(char *msg, int max)
 	
 	// Read bytes into msg.
 	while ( i < max ) {
-		// Read a chunk. Check for failure.
+		// Read a chunk.
 		int bytesTransmitted = layer2_read(&msg[i], max-i);
 		if ( bytesTransmitted == NetworkTransmissionFailure ) {
 			return NetworkTransmissionFailure;

@@ -15,16 +15,28 @@
 
 static int byte = sizeof(char);
 
-#warning TODO: Introduce random bugs to see if transmission catches the error.
-
 // Sample layer1_read just calls read on stdin
 int layer1_read(char *b)
 {
+#ifdef TEST_BIT_SCRAMBLING
+	if ( rand() % 10 == 0 ) {
+		b[0] = 'X';
+		return read(STDIN_FILENO, b, byte) != byte ? NetworkTransmissionFailure : NetworkTransmissionSuccess;
+	}
+#endif
+	
 	return read(STDIN_FILENO, b, byte) != byte ? NetworkTransmissionFailure : NetworkTransmissionSuccess;
 }
 
 // Sample layer1_write just calls write to stdout
 int layer1_write(char b)
 {
+#ifdef TEST_BIT_SCRAMBLING
+	if ( rand() % 10 == 0 ) {
+		b = 'X';
+		return write(STDOUT_FILENO, &b, byte) != byte ? NetworkTransmissionFailure : NetworkTransmissionSuccess;
+	}
+#endif
+	
 	return write(STDOUT_FILENO, &b, byte) != byte ? NetworkTransmissionFailure : NetworkTransmissionSuccess;
 }
