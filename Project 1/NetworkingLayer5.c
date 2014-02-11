@@ -96,7 +96,6 @@ int layer5_write(student *stu)
 	
 	// RIN
 	char rin[256];
-#warning does this need size specifier?
 	snprintf(rin, 256, "%d", stu->rin);
 	char *rinString = strndup(rin, 256);
 	status = layer4_write(rinString, (int) strnlen(rinString, 256)+1);
@@ -109,7 +108,6 @@ int layer5_write(student *stu)
 	
 	// GPA
 	char gpa[256];
-#warning does this need size specifier?
 	snprintf(gpa, 256, "%f", stu->gpa);
 	char *gpaString = strndup(gpa, 256);
 	status = layer4_write(gpaString, (int) strnlen(gpaString, 256)+1);
