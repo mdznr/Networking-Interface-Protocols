@@ -37,13 +37,13 @@ int layer3_read(char *msg, int max)
 			return NetworkTransmissionFailure;
 		}
 		
-		// Reached empty chunk.
-		if ( bytesTransmitted == 0 ) {
-			break;
-		}
-		
 		// Count transmitted bytes.
 		i += bytesTransmitted;
+		
+		// Reached unsaturated (or empty) chunk.
+		if ( bytesTransmitted != maxChunkSize ) {
+			break;
+		}
 	}
 	
 	// Return the number of bytes read.
@@ -72,15 +72,13 @@ int layer3_write(char *msg, int len)
 	}
 	
 #warning TODO: Do not send empty chunk, if sent incomplete chunk.
-	// Incomplete
-	if ( bytesTransmitted != maxChunkSize ) {
-		
-	}
-	
-	// Write empty chunk to denote end of message.
-	int transmissionStatus = layer2_write(NULL, 0);
-	if ( transmissionStatus == NetworkTransmissionFailure ) {
-		return NetworkTransmissionFailure;
+	// Saturated last chunk, needing to send empty chunk.
+	if ( bytesTransmitted == maxChunkSize ) {
+		// Write empty chunk to denote end of message.
+		int transmissionStatus = layer2_write(NULL, 0);
+		if ( transmissionStatus == NetworkTransmissionFailure ) {
+			return NetworkTransmissionFailure;
+		}
 	}
 	
 	// Return the number of bytes written.
