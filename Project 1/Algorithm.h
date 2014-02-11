@@ -9,16 +9,16 @@
 #ifndef Project_1_Algorithm_h
 #define Project_1_Algorithm_h
 
-/// MAX
+/// MAXIMUM
 /// Returns the maximum of the two values.
-#ifndef MAX
-#define MAX(A,B) ( ((A) > (B)) ? (A) : (B) )
+#ifndef MAXIMUM
+#define MAXIMUM(A,B) ( ((A) > (B)) ? (A) : (B) )
 #endif
 
-/// MIN
+/// MINIMUM
 /// Returns the minimum of the two values.
-#ifndef MIN
-#define MIN(A,B) ( ((A) < (B)) ? (A) : (B) )
+#ifndef MINIMUM
+#define MINIMUM(A,B) ( ((A) < (B)) ? (A) : (B) )
 #endif
 
 #endif
