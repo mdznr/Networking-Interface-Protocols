@@ -29,6 +29,7 @@ void NetworkingLayer2Tests()
 	END_TEST();
 }
 
+/// Test tranmission of zero bytes.
 bool test_TransmissionOfZero()
 {
 	int write = layer2_write(NULL, 0);
@@ -44,6 +45,7 @@ bool test_TransmissionOfZero()
 	return true;
 }
 
+/// Test transmission of less than one chunk.
 bool test_TransmissionOfLess()
 {
 	int len = 4;
@@ -70,6 +72,7 @@ bool test_TransmissionOfLess()
 	return true;
 }
 
+/// Test transmission of one full chunk.
 bool test_TransmissionOfEqual()
 {
 	int len = 16;
@@ -88,7 +91,9 @@ bool test_TransmissionOfEqual()
 	return true;
 }
 
+/// Test transmission of more than one full chunk.
 bool test_TransmissionOfMore()
 {
+#warning ensure failures.
 	return false;
 }
