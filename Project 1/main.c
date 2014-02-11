@@ -163,7 +163,6 @@ void layer4Test()
 	printf("\nlayer4_write: %d\n", len);
 	
 	char a[len+1];
-	a[len] = '\0';
 	printf("layer4_read: %d\n", layer4_read(a, len));
 	printf("read: %s", a);
 	
@@ -182,11 +181,13 @@ void layer5Test()
 	x.rin = 660994127;
 	x.gpa = 3.81;
 	
-	printf("layer5_write: %d\n", layer5_write(&x));
+	printf("\nlayer5_write: %d\n", layer5_write(&x));
 	
 	student y;
 	printf("layer5_read: %d\n", layer5_read(&y));
 	printf("read: %s %s %d %f", y.firstname, y.lastname, y.rin, y.gpa);
+	free(y.firstname);
+	free(y.lastname);
 	
 	printf("\nLayer 5 Test Ended\n");
 }
