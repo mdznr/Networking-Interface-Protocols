@@ -94,6 +94,6 @@ bool test_TransmissionOfEqual()
 /// Test transmission of more than one full chunk.
 bool test_TransmissionOfMore()
 {
-#warning ensure failures.
+	// TODO: ensure failures.
 	return false;
 }
