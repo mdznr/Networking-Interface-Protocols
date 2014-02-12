@@ -15,8 +15,6 @@
 
 #define MAX_NAME_LEN 80
 
-#define TEST_LAYERS
-
 #ifdef TEST_LAYERS
 #include "NetworkingLayersTests.h"
 #endif
