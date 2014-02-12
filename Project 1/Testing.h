@@ -17,7 +17,7 @@
 
 /// Mark the start of a test.
 /// @param NAME The name of the test.
-#define START_TEST(NAME) PRINT_LINE; printf(NAME); printf("\n");
+#define START_TEST() PRINT_LINE; printf(__FUNCTION__); printf("\n");
 
 /// Mark the end of a test.
 /// @param NAME The name of the test.

@@ -18,7 +18,7 @@ bool test_TransmissionOfChecksummedMoreThanOneChunk();
 
 void NetworkingLayer4Tests()
 {
-	START_TEST("NetworkingLayer4");
+	START_TEST();
 	
 	test_TransmissionOfChecksummedZeroChunks();
 	test_TransmissionOfChecksummedLessThanOneChunk();

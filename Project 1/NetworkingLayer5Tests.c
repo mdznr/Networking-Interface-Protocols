@@ -17,7 +17,7 @@ bool testTransmissionOfStudent();
 
 void NetworkingLayer5Tests()
 {
-	START_TEST("NetworkingLayer5");
+	START_TEST();
 	
 	testTransmissionOfStudent();
 	

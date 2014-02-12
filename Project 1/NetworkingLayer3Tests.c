@@ -18,7 +18,7 @@ bool test_TransmissionOfMoreThanOneChunk();
 
 void NetworkingLayer3Tests()
 {
-	START_TEST("NetworkingLayer3");
+	START_TEST();
 	
 	test_TransmissionOfZeroChunks();
 	test_TransmissionOfLessThanOneChunk();

@@ -19,7 +19,7 @@ bool test_TransmissionOfMore();
 
 void NetworkingLayer2Tests()
 {
-	START_TEST("NetworkingLayer2");
+	START_TEST();
 	
 	test_TransmissionOfZero();
 	test_TransmissionOfLess();

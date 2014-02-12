@@ -15,7 +15,7 @@ bool test_TransmitionOfByte();
 
 void NetworkingLayer1Tests()
 {
-	START_TEST("NetworkingLayer1");
+	START_TEST();
 	
 	test_TransmitionOfByte();
 	
